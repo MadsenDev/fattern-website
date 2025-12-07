@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { ArrowDownCircle, CheckCircle2, Shield, Sparkles, UploadCloud, Zap } from 'lucide-react'
 import './index.css'
 
@@ -20,8 +19,8 @@ const features = [
     description: 'Registrer kvitteringer, kategoriser kostnader og hold kontroll på MVA.',
   },
   {
-    title: 'SAF-T eksport',
-    description: 'Bygget for norsk regnskap med enkle SAF-T-eksporter når du trenger revisjon.',
+    title: 'SAF-T støtte',
+    description: 'Bygget for norsk regnskap med SAF-T-import og planlagt eksport for revisjon.',
   },
 ]
 
@@ -40,7 +39,7 @@ const templateHighlights = [
 const importOptions = [
   'SAF-T filer fra Fiken, Tripletex eller regnskapsfører.',
   'CSV fra banken, kortterminalen eller din egen eksport.',
-  'Gamle Mamut-databaser – endelig en smidig vei videre.',
+  'Gamle Mamut-data – ta med kunder, produkter og historikk via SAF-T eller CSV.',
 ]
 
 const supporterExtras = [
@@ -63,7 +62,7 @@ const faqs = [
   {
     question: 'Hvordan importerer jeg data fra Fiken / Mamut / Tripletex?',
     answer:
-      'Importer SAF-T eller CSV direkte. For Mamut tilbyr vi en veiviser som hjelper deg med å rydde og mappe data.',
+      'Importer SAF-T eller CSV direkte. For Mamut hjelper vi deg med å rydde og mappe data via eksportene du allerede har.',
   },
   {
     question: 'Hva skjer hvis PC-en min krasjer?',
@@ -111,7 +110,7 @@ function Logo() {
 }
 
 function App() {
-  const year = useMemo(() => new Date().getFullYear(), [])
+  const year = new Date().getFullYear()
 
   return (
     <div className="min-h-screen bg-white text-ink">
@@ -126,9 +125,12 @@ function App() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <button className="hidden sm:inline-flex items-center gap-2 rounded-full border border-sand bg-white px-4 py-2 text-sm font-semibold text-accent hover:bg-sand/40 transition">
+            <a
+              href="#preview"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-sand bg-white px-4 py-2 text-sm font-semibold text-accent hover:bg-sand/40 transition"
+            >
               <ArrowDownCircle className="h-4 w-4" /> Se hvordan
-            </button>
+            </a>
             <button className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-card hover:bg-brand-700 transition">
               Last ned
             </button>
@@ -155,9 +157,12 @@ function App() {
                 <button className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-card hover:bg-brand-700 transition">
                   Last ned Fattern
                 </button>
-                <button className="inline-flex items-center gap-2 rounded-full border border-sand bg-white px-6 py-3 text-sm font-semibold text-accent hover:bg-sand/40 transition">
+                <a
+                  href="#preview"
+                  className="inline-flex items-center gap-2 rounded-full border border-sand bg-white px-6 py-3 text-sm font-semibold text-accent hover:bg-sand/40 transition"
+                >
                   Se hvordan det fungerer
-                </button>
+                </a>
               </div>
               <div className="rounded-2xl bg-white p-4 shadow-card border border-sand/60">
                 <p className="text-sm text-ink-soft">
@@ -170,7 +175,7 @@ function App() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-accent" />
-                    Klar for SAF-T, CSV og Mamut-migrering.
+                    Klar for SAF-T-import, CSV og Mamut-overføringer.
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-accent" />
@@ -270,8 +275,8 @@ function App() {
               </div>
               <div className="rounded-2xl bg-cloud p-4 border border-sand/60 space-y-2">
                 <div className="flex items-center justify-between text-sm text-ink-soft">
-                  <span>SAF-T eksport</span>
-                  <span className="font-semibold text-ink">Klar</span>
+                  <span>SAF-T støtte</span>
+                  <span className="font-semibold text-ink">Import nå · eksport planlagt</span>
                 </div>
                 <div className="flex items-center justify-between text-sm text-ink-soft">
                   <span>Kryptert backup</span>
@@ -384,7 +389,7 @@ function App() {
               <p className="text-sm font-semibold text-moss">For Mamut-brukere</p>
               <h3 className="font-display text-2xl">Endelig en modernisering</h3>
               <p className="text-white/80 text-sm leading-relaxed">
-                Vi vet at mange fortsatt sitter på en gammel Mamut-installasjon. Fattern leser databasene dine, rydder duplikater og gir deg en ren start – uten at du mister historikken.
+                Vi vet at mange fortsatt sitter på en gammel Mamut-installasjon. Fattern guider deg gjennom SAF-T eller CSV slik at kunder, produkter og historikk blir med videre.
               </p>
             </div>
             <div className="rounded-3xl bg-cloud border border-sand/60 p-6 space-y-3">
@@ -400,7 +405,7 @@ function App() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="h-5 w-5 mt-0.5 text-accent" />
-                  <span>Eksporter SAF-T som revisor kan bruke med en gang.</span>
+                  <span>Eksporter SAF-T for revisjon når du trenger det (planlagt).</span>
                 </li>
               </ul>
             </div>
@@ -425,7 +430,7 @@ function App() {
                     </li>
                     <li className="flex gap-2 items-start">
                       <CheckCircle2 className="h-5 w-5 text-moss" />
-                      <span>Lokal lagring og SAF-T eksport.</span>
+                      <span>Lokal lagring og SAF-T-støtte (eksport planlagt).</span>
                     </li>
                     <li className="flex gap-2 items-start">
                       <CheckCircle2 className="h-5 w-5 text-moss" />
@@ -491,7 +496,7 @@ function App() {
                 </div>
               </div>
               <p className="text-sm text-ink-soft">
-                AI-funksjonene kjører lokalt eller på din egen maskin – ingen kvitteringer sendes ut i skyen.
+                AI-funksjonene er designet med personvern først – kvitteringer behandles trygt, og vi sender ikke mer data enn nødvendig.
               </p>
             </div>
           </div>
